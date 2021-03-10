@@ -23,3 +23,5 @@ I setup two environments to enable run:
     $ docker-compose --project-name php7 -f dev-docker-composer-php7.yml up
  
     $ docker-compose --project-name php5 -f dev-docker-composer-php5.yml up
+
+To not employ more time in configuration I used my own docker images when it was possible and I only put composer in one image
