@@ -12,3 +12,14 @@ I'll take the precaution of make a TAG or commit in the delete step to recover t
 smells codes, some are pretty clear but all of them showed by our IDE(phpstorm). At first sight we are not going to have serious incompatibilities with the php version
 1. The last step is to set up a symfony application and structure the code with a good architecture and good practices.
 1. improve documentation 
+
+
+### Step 1
+
+I suffer a docker update so takes me more time.
+
+I setup two environments to enable run:
+
+    $ docker-compose --project-name php7 -f dev-docker-composer-php7.yml up
+ 
+    $ docker-compose --project-name php5 -f dev-docker-composer-php5.yml up

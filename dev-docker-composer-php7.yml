@@ -1,0 +1,22 @@
+version: "3.2"
+services:
+  php-fpm:
+    image: enrikerf/php-fpm-xdebug:latest
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/var/www/app
+    environment:
+      PHP_IDE_CONFIG: serverName=docker.local
+  nginx:
+    image: enrikerf/nginx:latest
+    depends_on:
+      - php-fpm
+    ports:
+      - 80:80
+      - 9009:9009
+    volumes:
+      - ./public_html/backend:/var/www/app
+    environment:
+      - PUBLIC_FOLDER=/var/www/app/public
+      - APP_ENV=dev
