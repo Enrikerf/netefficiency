@@ -17,3 +17,7 @@ _PLEASE MAKE SURE:_
 - Please ensure you have at least one commit within the first hour
 - We want to be able to know how you develop, so we will review your commit history
 - Send us the Github link to your repository once you are happy
+
+**Enrique Arrabal's solution**
+
+the approach to [solution](/doc/NOTES.md) and the followed process
