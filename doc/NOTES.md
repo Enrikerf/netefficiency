@@ -24,4 +24,22 @@ I setup two environments to enable run:
  
     $ docker-compose --project-name php5 -f dev-docker-composer-php5.yml up
 
-To not employ more time in configuration I used my own docker images when it was possible and I only put composer in one image
+To not employ more time in configuration I used my own docker images when it was possible, and I only put composer in one image
+
+## Step 2
+
+We only have 2 native functions dependency in our code: getdate() and floor() ( the old fashion constructor was deleted because it was unnecessary)
+so we shouldn't have problems migrating.
+
+To ensure I review 
+
+* [change log from php5.0 to php7.0](https://www.php.net/manual/en/migration70.php)
+* [change log from php7.0 to php7.1](https://www.php.net/manual/en/migration71.php)
+* [change log from php7.1 to php7.2](https://www.php.net/manual/en/migration72.php)
+* [change log from php7.2 to php7.3](https://www.php.net/manual/en/migration73.php)
+* [change log from php7.3 to php7.3](https://www.php.net/manual/en/migration74.php)
+
+in index.php we have a bug because REQUEST_URI will return a relative route from server name starting with '/', so the endpoints are not reachable
+I made a quick fix to prove it, It is not problematic because we are migrating to symfony, and we'll develop a new controller
+
+
