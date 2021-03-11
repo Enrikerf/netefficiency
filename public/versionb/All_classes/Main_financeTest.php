@@ -69,9 +69,9 @@ class Main_financeTest extends TestCase
         $this->assertVAT(150.85, 181.02, 30.17);
         // Unit test
         $this->assertVAT(self::NEG_INF, 0, 0);
-        //$this->assertVAT(self::NEG_ZERO, 0,0);// not working on original code
+        $this->assertVAT(self::NEG_ZERO, 0,0);// not working on original code
         $this->assertVAT(self::POS_ZERO, round( self::POS_ZERO * 1.20,2), round( self::POS_ZERO * 0.20,2));
-        //$this->assertVAT(self::POS_INF, round( self::POS_INF * 1.20,2), round( self::POS_INF * 0.20,2)); //not working on original code
+        $this->assertVAT(self::POS_INF, round( self::POS_INF * 1.20,2), round( self::POS_INF * 0.20,2)); //not working on original code
 
     }
 

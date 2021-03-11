@@ -29,8 +29,13 @@ class Main_finance
     function VAT($price, &$tax)
     {
 
-        if ($price == "0.00") {
-            return $price;
+        if($price <= 0){
+            $tax = 0.00;
+            return 0.00;
+        }
+        if($price >= INF){
+            $tax = INF;
+            return INF;
         }
         $tax = "0.00";
         $rate = 20;

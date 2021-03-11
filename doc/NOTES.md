@@ -46,6 +46,7 @@ I made a quick fix to prove it, It is not problematic because we are migrating t
 
 ## Step 3
 
+### Step 3.1
 I'll make the test to proceed to refactor de code and then, with de code ensured and clean migrate to Symfony framework
 without uncontrolled risks.
 
@@ -57,8 +58,12 @@ the first function its clear, but the second I'll need to reduce de unnecessary 
 so I'll make a test to keep the current result. The endpoint always return the same values because the price and tax are
 hardcoded, so meanwhile I don't affect the client we'll be right.
 
+### Step 3.2
 With the test I determine that desired requirement of VAT are: calculate full price with a 20% taxes and return taxes charged
-This code don't work properly on negative numbers or in the upper limits, so I am going to refactor.
+This code don't work properly on negative numbers or in the upper limits, so I am going to fix the behaviour.
 
+I am not agreed with te interface of the function or the behaviour but I'm going to fix it and from then we could change the code.
 
+### Step 3.3
+The code pass all the test, we are going to refactor the code.
 
