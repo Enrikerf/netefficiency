@@ -67,3 +67,5 @@ I am not agreed with te interface of the function or the behaviour but I'm going
 ### Step 3.3
 The code pass all the test, we are going to refactor the code.
 
+### Step 3.4 
+Refactor today function

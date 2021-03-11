@@ -7,24 +7,9 @@ class Main_finance
 
     function today()
     {
-
-        $date_array = $this->getCurrentDay();
-        $yearID = $date_array['year'];
-        $monthID = $date_array['mon'];
-        if ($monthID < 10) {
-            $m2 = "0" . $monthID;
-        } else {
-            $m2 = $monthID;
-        }
-        $dayID = $date_array['mday'];
-        if ($dayID < 10) {
-            $d2 = "0" . $dayID;
-        } else {
-            $d2 = $dayID;
-        }
-
-        return $yearID . "-" . $m2 . "-" . $d2 . " 00:00:00";
-
+        $todayDateArray = $this->getCurrentDay();
+        $todayDate = (new DateTime())->setTimestamp($todayDateArray[0]);
+        return $todayDate->format("Y-m-d") . " 00:00:00";
     }
 
     function VAT($price, &$tax)
