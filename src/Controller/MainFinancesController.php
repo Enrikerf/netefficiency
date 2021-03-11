@@ -25,7 +25,7 @@ class MainFinancesController
      */
     public function vatEndpoint(): Response
     {
-        $tax = "";
+        $tax = 0;
         $response =  ' VAT: ' . (new MainFinance())->VAT(400, $tax) .  ' Tax: ' . $tax;
         return new Response($response,Response::HTTP_OK);
     }

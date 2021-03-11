@@ -1,4 +1,4 @@
-# Solution Procces:
+# Solution Process:
 
 ## First Thoughts:
 
