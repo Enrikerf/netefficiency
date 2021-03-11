@@ -1,10 +1,11 @@
 <?php
 
-include('Main_finance.php');
+namespace App\Tests;
 
+use App\Domain\MainFinance;
 use PHPUnit\Framework\TestCase;
 
-class Main_financeTest extends TestCase
+class MainFinanceTest extends TestCase
 {
 
     /**
@@ -19,11 +20,11 @@ class Main_financeTest extends TestCase
      *          - any year
      *      - we should make 4*2*1 = 8 asserts
      */
-    function testToday()
+    public function testToday()
     {
         $this->assertToday(getdate(strtotime("2000-01-01 00:00:00")), "2000-01-01 00:00:00");
         $this->assertToday(getdate(strtotime("2000-12-01 00:00:00")), "2000-12-01 00:00:00");
-        // it has no sense to prove 01 and 12 month with 28 so prove it with february and the result is two proves we can reduce it to one
+        // it has no sense to prove 01 and 12 month with 28 so prove it with february and the result is two proves we can reduced to one
         $this->assertToday(getdate(strtotime("2000-02-28 00:00:00")), "2000-02-28 00:00:00");
         $this->assertToday(getdate(strtotime("2000-01-30 00:00:00")), "2000-01-30 00:00:00");
         $this->assertToday(getdate(strtotime("2000-12-30 00:00:00")), "2000-12-30 00:00:00");
@@ -32,9 +33,9 @@ class Main_financeTest extends TestCase
 
     }
 
-    function assertToday($date, $assertResponse)
+    private function assertToday($date, $assertResponse)
     {
-        $mainFinanceTestFake = \Mockery::mock(Main_finance::class)->makePartial();
+        $mainFinanceTestFake = \Mockery::mock(MainFinance::class)->makePartial();
         $mainFinanceTestFake->shouldReceive('getCurrentDay')->andReturn($date);
         $this->assertEquals($assertResponse, $mainFinanceTestFake->today());
     }
@@ -61,24 +62,25 @@ class Main_financeTest extends TestCase
      *          - inf
      *      - 4
      */
-    function testVAT()
+    public function testVAT()
     {
         // Test to discover the functionality and preserve de original output
-        $this->assertVAT(400,  480, 80);
-        $this->assertVAT(200,  240, 40);
+        $this->assertVAT(400, 480, 80);
+        $this->assertVAT(200, 240, 40);
         $this->assertVAT(150.85, 181.02, 30.17);
         // Unit test
         $this->assertVAT(self::NEG_INF, 0, 0);
-        $this->assertVAT(self::NEG_ZERO, 0,0);// not working on original code
-        $this->assertVAT(self::POS_ZERO, round( self::POS_ZERO * 1.20,2), round( self::POS_ZERO * 0.20,2));
-        $this->assertVAT(self::POS_INF, round( self::POS_INF * 1.20,2), round( self::POS_INF * 0.20,2)); //not working on original code
+        $this->assertVAT(self::NEG_ZERO, 0, 0);// not working on original code
+        $this->assertVAT(self::POS_ZERO, round(self::POS_ZERO * 1.20, 2), round(self::POS_ZERO * 0.20, 2));
+        $this->assertVAT(self::POS_INF, round(self::POS_INF * 1.20, 2),
+            round(self::POS_INF * 0.20, 2)); //not working on original code
 
     }
 
-    function assertVAT($price, $priceResult, $taxResult)
+    private function assertVAT($price, $priceResult, $taxResult)
     {
         $tax = self::TAX;
-        $this->assertEquals($priceResult, (new Main_finance())->VAT($price, $tax));
+        $this->assertEquals($priceResult, (new MainFinance())->VAT($price, $tax));
         $this->assertEquals($taxResult, $tax);
     }
 

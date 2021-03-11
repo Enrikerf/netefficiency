@@ -79,3 +79,42 @@ I realise that the version installed, symfony 5 it is not compatible with php5 b
 and the minimum version that accept that php version it is not supported any more (3.4) I don't consider a good solution.
 is heavier, have unnecessary dependencies and have abandoned packages. It was a mistake, and I have no time to fix it. I prove
 with the test that the core code it is compatible with php5
+
+
+## Step 4.1 
+
+Taking advantage of my mistake I will migrate the code to  the new php74 styles.
+
+## Step 5
+
+Make a documentation to setup the environment 
+
+SETUP Dockers
+
+    docker-compose --project-name php7 -f dev-docker-composer-php7.yml up
+
+List all the containers in the image
+
+    docker ps 
+
+Access to php service to execute tests
+
+    docker exec -it php7_php-<NAME> /bin/sh
+
+Execute test
+```
+/var/www/app # php vendor/phpunit/phpunit/phpunit --testdox
+PHPUnit 9.5.2 by Sebastian Bergmann and contributors.
+
+Warning:       Your XML configuration validates against a deprecated schema.
+Suggestion:    Migrate your XML configuration using "--migrate-configuration"!
+
+Main Finance (App\Tests\MainFinance)
+ ✔ Today
+ ✔ V a t
+
+Time: 00:00.414, Memory: 8.00 MB
+
+OK (2 tests, 21 assertions)
+/var/www/app #
+```
