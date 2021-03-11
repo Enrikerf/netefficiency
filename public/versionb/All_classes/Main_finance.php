@@ -3,6 +3,7 @@
 class Main_finance
 {
 
+    const TAX = 0.2;
 
     function today()
     {
@@ -28,48 +29,21 @@ class Main_finance
 
     function VAT($price, &$tax)
     {
-
-        if($price <= 0){
+        if ($price <= 0) {
             $tax = 0.00;
             return 0.00;
         }
-        if($price >= INF){
+        if ($price >= INF) {
             $tax = INF;
             return INF;
         }
-        $tax = "0.00";
-        $rate = 20;
-        $fullprice = (int)($price * 100);
-        $tax = floor($fullprice * $rate) / 100;
-        $tax = (int)$tax;
-        $finalprice = $fullprice + $tax;
-
-        $p1 = floor($finalprice / 100);
-        $p2 = $p1 * 100;
-        $p3 = $finalprice - $p2;
-        $p4 = "$p3";
-        if ($p3 < 9) {
-            $p4 = "0" . $p3;
-        }
-
-        $price = $p1 . "." . $p4;
-
-        $p1 = floor($tax / 100);
-        $p2 = $p1 * 100;
-        $p3 = $tax - $p2;
-        $p4 = "$p3";
-        if ($p3 < 9) {
-            $p4 = "0" . $p3;
-        }
-
-        $tax = $p1 . "." . $p4;
-
-        return $price;
-
+        $tax = round($price * self::TAX, 2);
+        return round($price * (1 + self::TAX), 2);
     }
 
 
-    function getCurrentDay(){
+    function getCurrentDay()
+    {
         return getdate();
     }
 
