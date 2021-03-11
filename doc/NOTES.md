@@ -67,5 +67,15 @@ I am not agreed with te interface of the function or the behaviour but I'm going
 ### Step 3.3
 The code pass all the test, we are going to refactor the code.
 
-### Step 3.4 
+### Step 3.4
 Refactor today function
+
+
+## Step 4
+
+install Symfony and configure it
+
+I realise that the version installed, symfony 5 it is not compatible with php5 but, if the premise is to migrate to symfony,
+and the minimum version that accept that php version it is not supported any more (3.4) I don't consider a good solution.
+is heavier, have unnecessary dependencies and have abandoned packages. It was a mistake, and I have no time to fix it. I prove
+with the test that the core code it is compatible with php5

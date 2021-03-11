@@ -1,6 +1,9 @@
 <?php
+namespace App\Domain;
 
-class Main_finance
+use DateTime;
+
+class MainFinance
 {
 
     const TAX = 0.2;
