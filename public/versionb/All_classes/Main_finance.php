@@ -7,7 +7,7 @@ class Main_finance
     function today()
     {
 
-        $date_array = getdate();
+        $date_array = $this->getCurrentDay();
         $yearID = $date_array['year'];
         $monthID = $date_array['mon'];
         if ($monthID < 10) {
@@ -62,7 +62,12 @@ class Main_finance
         return $price;
 
     }
+
+
+    function getCurrentDay(){
+        return getdate();
+    }
+
 }
 
 
-?>

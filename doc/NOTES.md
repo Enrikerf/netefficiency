@@ -42,4 +42,19 @@ To ensure I review
 in index.php we have a bug because REQUEST_URI will return a relative route from server name starting with '/', so the endpoints are not reachable
 I made a quick fix to prove it, It is not problematic because we are migrating to symfony, and we'll develop a new controller
 
+> Because the update in the system I spent more time, so it's late, and I'll do it tomorrow the remain work
+
+## Step 3
+
+I'll make the test to proceed to refactor de code and then, with de code ensured and clean migrate to Symfony framework
+without uncontrolled risks.
+
+The analysis of the code show us that we have two functions: 
+* return the current day in specific format
+* a function that seems to return a price incremented by 20% whatever taxes you introduce it will be changed to 20% by parameter
+
+the first function its clear, but the second I'll need to reduce de unnecessary temporary variables to understand better the desired functionality, 
+so I'll make a test to keep the current result. The endpoint always return the same values because the price and tax are
+hardcoded, so meanwhile I don't affect the client we'll be right.
+
 
