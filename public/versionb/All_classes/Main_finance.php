@@ -23,7 +23,7 @@ class Main_finance
             return INF;
         }
         $tax = round($price * self::TAX, 2);
-        return round($price * (1 + self::TAX), 2);
+        return number_format(round($price * (1 + self::TAX), 2),2,'.','');
     }
 
 
