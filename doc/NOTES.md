@@ -67,6 +67,8 @@ I am not agreed with te interface of the function or the behaviour but I'm going
 ### Step 3.3
 The code pass all the test, we are going to refactor the code.
 
+    Brake to dinner from 21 to 22
+
 ### Step 3.4
 Refactor today function
 
@@ -118,3 +120,14 @@ Time: 00:00.414, Memory: 8.00 MB
 OK (2 tests, 21 assertions)
 /var/www/app #
 ```
+
+
+# Next steps
+
+I'll notify that I have finish the basic task, but Tomorrow I would like to develop a hexagonal architecture. 
+Of course, it has no sense in such a code and will be against pragmatism, but I'll do it for the pleasure of the academic purpose.
+
+
+We could see the time employed in the project:
+
+![logo](ProjectTime.PNG) "Reference: [wakatime](https://wakatime.com/@enrikerf)"
