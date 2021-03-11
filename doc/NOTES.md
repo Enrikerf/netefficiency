@@ -57,4 +57,8 @@ the first function its clear, but the second I'll need to reduce de unnecessary 
 so I'll make a test to keep the current result. The endpoint always return the same values because the price and tax are
 hardcoded, so meanwhile I don't affect the client we'll be right.
 
+With the test I determine that desired requirement of VAT are: calculate full price with a 20% taxes and return taxes charged
+This code don't work properly on negative numbers or in the upper limits, so I am going to refactor.
+
+
 

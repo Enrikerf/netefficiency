@@ -42,13 +42,14 @@ class Main_financeTest extends TestCase
 
     // Created to be parametric and make easier other proves of the limits, I use INF because PHP_FLOAT_MIN and so on its only available on php7.2
     const NEG_INF = -INF;
-    const POS_INF = -INF;
-    const POS_ZERO = -0.01 ; //PHP_FLOAT_EPSILON only available on >php7.2
-    const NEG_ZERO = 0.01 ;
-    const TAX_RESULT = 20;
+    const POS_INF = INF;
+    const POS_ZERO = 0.01; //PHP_FLOAT_EPSILON only available on >php7.2
+    const NEG_ZERO = -0.01;
+    const TAX = 20;
+
     /**
      * Factor:
-     *      - Price and taxes
+     *      - Price because taxes it is hardcoded inside the function to 20
      * Equivalence classes:
      *      - negative numbers
      *      - positive numbers
@@ -58,30 +59,25 @@ class Main_financeTest extends TestCase
      *          - 0 by the left
      *          - 0 by the right
      *          - inf
-     *      - 4 *4 = 16 proves
+     *      - 4
      */
     function testVAT()
     {
-        $this->assertVAT(self::NEG_INF,self::NEG_INF,0.00,self::TAX_RESULT);
-        $this->assertVAT(self::NEG_ZERO,self::NEG_INF,self::NEG_ZERO *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::POS_ZERO,self::NEG_INF,self::POS_ZERO *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::POS_INF,self::NEG_INF,self::POS_INF *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::NEG_INF,self::NEG_ZERO,self::NEG_INF *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::NEG_ZERO,self::NEG_ZERO,self::NEG_ZERO *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::POS_ZERO,self::NEG_ZERO,self::POS_ZERO *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::POS_INF,self::NEG_ZERO,self::POS_INF *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::NEG_INF,self::POS_ZERO,self::NEG_INF *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::NEG_ZERO,self::POS_ZERO,self::NEG_ZERO *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::POS_ZERO,self::POS_ZERO,self::POS_ZERO *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::POS_INF,self::POS_ZERO,self::POS_INF *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::NEG_INF,self::POS_INF,self::NEG_INF *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::NEG_ZERO,self::POS_INF,self::NEG_ZERO *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::POS_ZERO,self::POS_INF,self::POS_ZERO *1.20,self::TAX_RESULT);
-        $this->assertVAT(self::POS_INF,self::POS_INF,self::POS_INF *1.20,self::TAX_RESULT);
+        // Test to discover the functionality and preserve de original output
+        $this->assertVAT(400,  480, 80);
+        $this->assertVAT(200,  240, 40);
+        $this->assertVAT(150.85, 181.02, 30.17);
+        // Unit test
+        $this->assertVAT(self::NEG_INF, 0, 0);
+        //$this->assertVAT(self::NEG_ZERO, 0,0);// not working on original code
+        $this->assertVAT(self::POS_ZERO, round( self::POS_ZERO * 1.20,2), round( self::POS_ZERO * 0.20,2));
+        //$this->assertVAT(self::POS_INF, round( self::POS_INF * 1.20,2), round( self::POS_INF * 0.20,2)); //not working on original code
 
     }
 
-    function assertVAT($price,$tax,$priceResult,$taxResult){
+    function assertVAT($price, $priceResult, $taxResult)
+    {
+        $tax = self::TAX;
         $this->assertEquals($priceResult, (new Main_finance())->VAT($price, $tax));
         $this->assertEquals($taxResult, $tax);
     }
