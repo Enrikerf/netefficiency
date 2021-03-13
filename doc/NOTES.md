@@ -150,4 +150,4 @@ will have the responsibility to process it.
 The third possible shortcut is to inject directly the Repository and don't have interfaces.
 
 
-![hexagonal](hexagonalCost.PNG) "Image 2. Hexagonal architecture cost"
+![hexagonal](hexagonalCost.png) "Image 2. Hexagonal architecture cost"
