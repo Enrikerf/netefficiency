@@ -18,7 +18,7 @@ class MainFinancesController
 
     private const VAT_STRING = ' VAT: ';
     private const TAX_STRING = ' Tax: ';
-    private const HELLO = "Hello!";
+    private const HELLO_STRING = "Hello!";
     private const FIXED_BASE_PRICE = 400;
     /**
      * @Route("/time", methods={"GET"})
@@ -47,10 +47,10 @@ class MainFinancesController
      */
     public function defaultEndpoint(): Response
     {
-        return new Response(self::HELLO,Response::HTTP_OK);
+        return new Response(self::HELLO_STRING,Response::HTTP_OK);
     }
 
     private function generatePriceView(Price $price):string{
-        return self::VAT_STRING  . $price->getTotalPrice() .  self::VAT_STRING . $price->getVat();
+        return self::VAT_STRING  . $price->getTotalPrice() .  self::TAX_STRING . $price->getVat();
     }
 }

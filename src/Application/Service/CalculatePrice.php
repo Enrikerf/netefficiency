@@ -4,7 +4,6 @@
 namespace App\Application\Service;
 
 
-
 use App\Application\Port\in\CalculatePriceUseCase\CalculatePriceCommand;
 use App\Application\Port\in\CalculatePriceUseCase\CalculatePriceUseCase;
 use App\Domain\MainFinance;
@@ -22,6 +21,6 @@ class CalculatePrice implements CalculatePriceUseCase
     public function calculate(CalculatePriceCommand $calculatePriceCommand): Price
     {
         $tax = $this->mainFinance->calculateVat($calculatePriceCommand->getBasePrice());
-        return new Price($calculatePriceCommand->getBasePrice(),$tax);
+        return new Price($calculatePriceCommand->getBasePrice(), $tax);
     }
 }

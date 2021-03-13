@@ -41,7 +41,6 @@ class MainFinanceTest extends TestCase
     }
 
 
-    // Created to be parametric and make easier other proves of the limits, I use INF because PHP_FLOAT_MIN and so on its only available on php7.2
     const NEG_INF = -INF;
     const POS_INF = INF;
     const POS_ZERO = 0.01; //PHP_FLOAT_EPSILON only available on >php7.2
@@ -50,41 +49,18 @@ class MainFinanceTest extends TestCase
 
     /**
      * Factor:
-     *      - Price because taxes it is hardcoded inside the function to 20
+     *      - Price
      * Equivalence classes:
      *      - negative numbers
      *      - positive numbers
      *  Limits
-     *      - errors tend to show up in the limits, the limits to our equivalence class (day) are:
+     *      - errors tend to show up in the limits, the limits to our equivalence class are:
      *          - -inf
      *          - 0 by the left
      *          - 0 by the right
      *          - inf
-     *      - 4
+     *      - 4 assert
      */
-    public function testVAT()
-    {
-        // Test to discover the functionality and preserve de original output
-        $this->assertVAT(400, 480, 80);
-        $this->assertVAT(200, 240, 40);
-        $this->assertVAT(150.85, 181.02, 30.17);
-        // Unit test
-        $this->assertVAT(self::NEG_INF, 0, 0);
-        $this->assertVAT(self::NEG_ZERO, 0, 0);// not working on original code
-        $this->assertVAT(self::POS_ZERO, round(self::POS_ZERO * 1.20, 2), round(self::POS_ZERO * 0.20, 2));
-        $this->assertVAT(self::POS_INF, round(self::POS_INF * 1.20, 2),
-            round(self::POS_INF * 0.20, 2)); //not working on original code
-
-    }
-
-    private function assertVAT($price, $priceResult, $taxResult)
-    {
-        $tax = self::TAX;
-        $this->assertEquals($priceResult, (new MainFinance())->VAT($price, $tax));
-        $this->assertEquals($taxResult, $tax);
-    }
-
-    /** To refactor the original vat function we will made another one with the same functionality but other interface */
     public function testCalculateVAT()
     {
         $this->assertCalculateVAT(self::NEG_INF,  0);
