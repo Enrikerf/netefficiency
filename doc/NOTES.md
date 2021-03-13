@@ -131,3 +131,11 @@ Of course, it has no sense in such a code and will be against pragmatism, but I'
 We could see the time employed in the project:
 
 ![logo](ProjectTime.PNG) "Reference: [wakatime](https://wakatime.com/@enrikerf)"
+
+
+I made a hexagonal architecture in full detail to show the structure, in this size of code the interfaces are useless and only made verbose the code. The core concept is to be pragmatic and choose between the full implementation of the book concept and our necessities. In this case, I would inject the services directly and if we need an interface in the future implement it.
+
+With all implemented, I will change the core interface of the vat function to return only the vat given base price and
+remove the by reference parameter.
+
+We could develop a view concept to don't get constant in the controller and separate responsibilities
