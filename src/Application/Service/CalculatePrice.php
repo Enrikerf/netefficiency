@@ -21,8 +21,7 @@ class CalculatePrice implements CalculatePriceUseCase
 
     public function calculate(CalculatePriceCommand $calculatePriceCommand): Price
     {
-        $tax = 0;
-        $this->mainFinance->VAT($calculatePriceCommand->getBasePrice(),$tax);
+        $tax = $this->mainFinance->calculateVat($calculatePriceCommand->getBasePrice());
         return new Price($calculatePriceCommand->getBasePrice(),$tax);
     }
 }
