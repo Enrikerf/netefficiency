@@ -30,6 +30,17 @@ class MainFinance
         return number_format(round($price * (1 + self::TAX), 2), 2, '.', '');
     }
 
+    public function calculateVat(float $basePrice): float
+    {
+        if ($basePrice <= 0) {
+            return 0.00;
+        }
+        if ($basePrice >= INF) {
+            return INF;
+        }
+       return round($basePrice * self::TAX, 2);
+    }
+
 
     public function getCurrentDay(): array
     {
