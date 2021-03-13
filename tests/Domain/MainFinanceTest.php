@@ -84,4 +84,18 @@ class MainFinanceTest extends TestCase
         $this->assertEquals($taxResult, $tax);
     }
 
+    /** To refactor the original vat function we will made another one with the same functionality but other interface */
+    public function testCalculateVAT()
+    {
+        $this->assertCalculateVAT(self::NEG_INF,  0);
+        $this->assertCalculateVAT(self::NEG_ZERO,  0);
+        $this->assertCalculateVAT(self::POS_ZERO,  round(self::POS_ZERO * 0.20, 2));
+        $this->assertCalculateVAT(self::POS_INF, round(self::POS_INF * 0.20, 2));
+    }
+
+    private function assertCalculateVAT($basePrice, $taxResult)
+    {
+        $this->assertEquals($taxResult, (new MainFinance())->calculateVat($basePrice));
+    }
+
 }
